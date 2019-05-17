@@ -20,12 +20,16 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 
 public class MovieFragment extends Fragment {
     final static String ARG_POSITION = "position";
     int mCurrentPosition = -1;
-    private TextView tvMovie;
+    private LinearLayout llMovie;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, 
@@ -39,8 +43,8 @@ public class MovieFragment extends Fragment {
         }
 
         // Inflate the layout for this fragment
-        tvMovie = (TextView)inflater.inflate(R.layout.movie_view, container, false);
-        return tvMovie;
+        llMovie = (LinearLayout)inflater.inflate(R.layout.movie_view, container, false);
+        return llMovie;
     }
 
     @Override
@@ -63,7 +67,12 @@ public class MovieFragment extends Fragment {
 
     public void updateMovieView(int position) {
 
-        tvMovie.setText(ViewElements.Movies[position]);
+        TextView movieTitle = (TextView) getView().findViewById(R.id.movieTitle);
+        movieTitle.setText(ViewElements.Titles[position]);
+
+        ImageView moviePoster = (ImageView) getView().findViewById(R.id.moviePoster);
+        Glide.with(this).load("https://m.media-amazon.com/images/M/MV5BMTc5MDE2ODcwNV5BMl5BanBnXkFtZTgwMzI2NzQ2NzM@._V1_.jpg").into(moviePoster);
+
         mCurrentPosition = position;
     }
 

@@ -17,6 +17,15 @@ package com.example.movieapp;
 
 public class ViewElements {
 
+    private static ViewElements viewElements = null;
+
+    public static ViewElements getInstance() {
+        if (viewElements == null) {
+            viewElements = new ViewElements();
+        }
+        return viewElements;
+    }
+
     static String[] Titles = {
             "Movie One",
             "Movie Two",
@@ -27,13 +36,4 @@ public class ViewElements {
             "Movie Seven",
     };
 
-    static String[] Movies = {
-            "Movie One",
-            "Movie Two",
-            "Movie Tree",
-            "Movie Four",
-            "Movie Five",
-            "Movie Six",
-            "Movie Seven",
-    };
 }
