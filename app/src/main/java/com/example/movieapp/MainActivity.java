@@ -12,8 +12,22 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, TitleFragment.OnTitleSelectedListener {
+
+    public static String BASE_URL = "https://api.themoviedb.org";
+    public static int PAGE = 1;
+    public static String API_KEY = "9b177e3d3959df535a83552cd2527d28";
+    public static String LANGUAGE = "en-US";
+    public static String CATEGORY = "popular";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +65,33 @@ public class MainActivity extends AppCompatActivity
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.fragment_container, firstFragment).commit();
         }
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        ApiInterface myInterFace = retrofit.create(ApiInterface.class);
+
+        Call<MovieResults> call = myInterFace.listOfMovies(CATEGORY, API_KEY, LANGUAGE, PAGE);
+
+        call.enqueue(new Callback<MovieResults>() {
+            @Override
+            public void onResponse(Call<MovieResults> call, Response<MovieResults> response) {
+                MovieResults results = response.body();
+
+                //listOfMovies will be the List object containing all the movie details
+                List<MovieResults.ResultsBean> listOfMovies = results.getResults();
+            }
+
+            @Override
+            public void onFailure(Call<MovieResults> call, Throwable t) {
+                t.printStackTrace();
+            }
+        });
+
     }
+
 
     @Override
     public void onBackPressed() {
