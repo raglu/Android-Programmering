@@ -24,8 +24,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-
 public class MovieFragment extends Fragment {
     final static String ARG_POSITION = "position";
     int mCurrentPosition = -1;
@@ -71,7 +69,7 @@ public class MovieFragment extends Fragment {
         movieTitle.setText(ViewElements.Titles[position]);
 
         ImageView moviePoster = (ImageView) getView().findViewById(R.id.moviePoster);
-        Glide.with(this).load("https://m.media-amazon.com/images/M/MV5BMTc5MDE2ODcwNV5BMl5BanBnXkFtZTgwMzI2NzQ2NzM@._V1_.jpg").into(moviePoster);
+        GlideApp.with(this).load("https://m.media-amazon.com/images/M/MV5BMTc5MDE2ODcwNV5BMl5BanBnXkFtZTgwMzI2NzQ2NzM@._V1_.jpg").into(moviePoster);
 
         mCurrentPosition = position;
     }
