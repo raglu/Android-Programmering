@@ -16,6 +16,7 @@
 package com.example.movieapp;
 
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,7 +28,7 @@ import android.widget.TextView;
 public class MovieFragment extends Fragment {
     final static String ARG_POSITION = "position";
     int mCurrentPosition = -1;
-    private ScrollView svMovie;
+    private CoordinatorLayout svMovie;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, 
@@ -41,7 +42,7 @@ public class MovieFragment extends Fragment {
         }
 
         // Inflate the layout for this fragment
-        svMovie = (ScrollView) inflater.inflate(R.layout.movie_view, container, false);
+        svMovie = (CoordinatorLayout) inflater.inflate(R.layout.movie_view, container, false);
         return svMovie;
     }
 
@@ -65,10 +66,10 @@ public class MovieFragment extends Fragment {
 
     public void updateMovieView(int position) {
 
-        TextView movieTitle = (TextView) getView().findViewById(R.id.movieTitle);
+        TextView movieTitle = (TextView) getView().findViewById(R.id.movieDetailsTitle);
         movieTitle.setText(ViewElements.Titles[position]);
 
-        ImageView moviePoster = (ImageView) getView().findViewById(R.id.moviePoster);
+        ImageView moviePoster = (ImageView) getView().findViewById(R.id.movieDetailsBackdrop);
         GlideApp.with(this).load("https://m.media-amazon.com/images/M/MV5BMTc5MDE2ODcwNV5BMl5BanBnXkFtZTgwMzI2NzQ2NzM@._V1_.jpg").into(moviePoster);
 
         mCurrentPosition = position;
