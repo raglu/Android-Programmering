@@ -11,4 +11,13 @@
     <string name="menu_comedy">Comedy</string>
     <string name="menu_drama">Drama</string>
     <string name="menu_horror">Horror</string>
+    <string name="rating">Rating:</string>
+    <string name="directors">Directors:</string>
+    <string name="description">Description:</string>
+    <string name="genres">Genres:</string>
+    <string name="cast">Cast:</string>
+    <string name="menu_popularity">Popularity</string>
+    <string name="menu_release_date">Release Date</string>
+    <string name="menu_duration">Duration</string>
+    <string name="menu_rating">Rating</string>
 </resources>

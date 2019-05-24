@@ -21,13 +21,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 public class MovieFragment extends Fragment {
     final static String ARG_POSITION = "position";
     int mCurrentPosition = -1;
-    private LinearLayout llMovie;
+    private ScrollView svMovie;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, 
@@ -41,8 +41,8 @@ public class MovieFragment extends Fragment {
         }
 
         // Inflate the layout for this fragment
-        llMovie = (LinearLayout)inflater.inflate(R.layout.movie_view, container, false);
-        return llMovie;
+        svMovie = (ScrollView) inflater.inflate(R.layout.movie_view, container, false);
+        return svMovie;
     }
 
     @Override
