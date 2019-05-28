@@ -91,13 +91,11 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.action) {
+        if (id == R.id.sortUpcoming) {
             // Handle the camera action
-        } else if (id == R.id.comedy) {
+        } else if (id == R.id.sortPopular) {
 
-        } else if (id == R.id.drama) {
-
-        } else if (id == R.id.horror) {
+        } else if (id == R.id.sortRating) {
 
         }
 

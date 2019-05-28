@@ -3,50 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-
-    <group
-        android:id="@+id/grp1"
-        android:checkableBehavior="single">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Sort by:"
-            android:textSize="12sp" />
-        <item
-            android:id="@+id/sortRating"
-            android:title="@string/menu_rating" />
-        <item
-            android:id="@+id/sortPopularity"
-            android:title="@string/menu_popularity" />
-        <item
-            android:id="@+id/sortReleaseDate"
-            android:title="@string/menu_release_date" />
-        <item
-            android:id="@+id/sortDuration"
-            android:title="@string/menu_duration" />
-    </group>
-
-
-    <group
-        android:id="@+id/grp2"
-        android:checkableBehavior="single">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Genres:"
-            android:textSize="12sp" />
-        <item
-            android:id="@+id/action"
-            android:title="@string/menu_action" />
-        <item
-            android:id="@+id/comedy"
-            android:title="@string/menu_comedy" />
-        <item
-            android:id="@+id/drama"
-            android:title="@string/menu_drama" />
-        <item
-            android:id="@+id/horror"
-            android:title="@string/menu_horror" />
-    </group>
+    <item
+        android:id="@+id/sortPopular"
+        android:title="@string/menu_popularity" />
+    <item
+        android:id="@+id/sortRating"
+        android:title="@string/menu_rating" />
+    <item
+        android:id="@+id/sortUpcoming"
+        android:title="@string/menu_upcoming" />
 
 </menu>
