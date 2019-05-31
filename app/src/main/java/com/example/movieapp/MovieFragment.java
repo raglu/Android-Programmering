@@ -26,7 +26,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 public class MovieFragment extends Fragment {
-    final static String ARG_POSITION = "position";
+   /* final static String ARG_POSITION = "position";
     int mCurrentPosition = -1;
     private CoordinatorLayout svMovie;
 
@@ -81,5 +81,5 @@ public class MovieFragment extends Fragment {
 
         // Save the current movie selection in case we need to recreate the fragment
         outState.putInt(ARG_POSITION, mCurrentPosition);
-    }
+    }*/
 }
