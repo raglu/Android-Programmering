@@ -20,6 +20,9 @@ import java.util.List;
 
 public class MovieActivity extends AppCompatActivity {
 
+    //TODO Move all relevant functionality to MovieFragment and then remove this class
+    //To make it Fragment based.
+
     public static String MOVIE_ID = "movie_id";
 
     private static String IMAGE_BASE_URL = "http://image.tmdb.org/t/p/w780";
