@@ -23,8 +23,12 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import java.util.List;
+
 public class TitleFragment extends ListFragment {
+
     OnTitleSelectedListener mCallback;
+    private MoviesRepository moviesRepository;
 
     // The container Activity must implement this interface so the frag can deliver messages
     public interface OnTitleSelectedListener {
@@ -36,12 +40,25 @@ public class TitleFragment extends ListFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // We need to use a different list item layout for devices older than Honeycomb
-        int layout = Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB ?
-                android.R.layout.simple_list_item_activated_1 : android.R.layout.simple_list_item_1;
+        moviesRepository = MoviesRepository.getInstance();
 
-        // Create an array adapter for the list view, using the ViewElements title array
-        setListAdapter(new ArrayAdapter<String>(getActivity(), layout, ViewElements.Titles));
+        moviesRepository.getMovies(new OnGetMoviesCallback() {
+            @Override
+            public void onSuccess(List<Movie> movies) {
+                String[] s = new String[100];
+
+                for(int i = 0; i < movies.size(); i++){
+                    s[i]= movies.get(i).getTitle();
+                }
+
+                int layout = android.R.layout.simple_list_item_activated_1;
+                setListAdapter(new ArrayAdapter<String>(getActivity(), layout, s));
+            }
+
+            @Override
+            public void onError() {
+            }
+        });
     }
 
     @Override

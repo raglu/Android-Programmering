@@ -35,7 +35,7 @@ public class MoviesRepository {
     }
 
     public void getMovies(final OnGetMoviesCallback callback) {
-        api.getPopularMovies("<YOUR_API_KEY>", LANGUAGE, 1)
+        api.getPopularMovies("9b177e3d3959df535a83552cd2527d28", LANGUAGE, 1)
                 .enqueue(new Callback<MoviesResponse>() {
                     @Override
                     public void onResponse(@NonNull Call<MoviesResponse> call, @NonNull Response<MoviesResponse> response) {
