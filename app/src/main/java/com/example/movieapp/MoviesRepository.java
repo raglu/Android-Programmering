@@ -34,28 +34,44 @@ public class MoviesRepository {
         return repository;
     }
 
-    public void getMovies(final OnGetMoviesCallback callback) {
-        api.getPopularMovies("9b177e3d3959df535a83552cd2527d28", LANGUAGE, 1)
-                .enqueue(new Callback<MoviesResponse>() {
-                    @Override
-                    public void onResponse(@NonNull Call<MoviesResponse> call, @NonNull Response<MoviesResponse> response) {
-                        if (response.isSuccessful()) {
-                            MoviesResponse moviesResponse = response.body();
-                            if (moviesResponse != null && moviesResponse.getMovies() != null) {
-                                callback.onSuccess(moviesResponse.getMovies());
-                            } else {
-                                callback.onError();
-                            }
-                        } else {
-                            callback.onError();
-                        }
-                    }
+    public void getMovies(String type, final OnGetMoviesCallback callback) {
 
-                    @Override
-                    public void onFailure(Call<MoviesResponse> call, Throwable t) {
+        Call<MoviesResponse> call;
+
+        switch (type) {
+            case "Popular":
+                call = api.getPopularMovies("9b177e3d3959df535a83552cd2527d28", LANGUAGE, 1);
+                break;
+            case "TopRated":
+                call = api.getTopRatedMovies("9b177e3d3959df535a83552cd2527d28", LANGUAGE, 1);
+                break;
+            case "Upcoming":
+                call = api.getUpcomingMovies("9b177e3d3959df535a83552cd2527d28", LANGUAGE, 1);
+                break;
+            default:
+                call = api.getPopularMovies("9b177e3d3959df535a83552cd2527d28", LANGUAGE, 1);
+        }
+
+        call.enqueue(new Callback<MoviesResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<MoviesResponse> call, @NonNull Response<MoviesResponse> response) {
+                if (response.isSuccessful()) {
+                    MoviesResponse moviesResponse = response.body();
+                    if (moviesResponse != null && moviesResponse.getMovies() != null) {
+                        callback.onSuccess(moviesResponse.getMovies());
+                    } else {
                         callback.onError();
                     }
-                });
+                } else {
+                    callback.onError();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<MoviesResponse> call, Throwable t) {
+                callback.onError();
+            }
+        });
     }
 
     public void getMovie(int movieId, final OnGetMovieCallback callback) {

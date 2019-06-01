@@ -7,9 +7,9 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <string name="menu_popularity">Sort by Popularity</string>
-    <string name="menu_rating">Sort by Rating</string>
-    <string name="menu_upcoming">Sort by Upcoming</string>
+    <string name="menu_popularity">Show Popular</string>
+    <string name="menu_rating">Show Top Rated</string>
+    <string name="menu_upcoming">Show Upcoming</string>
 
     <string name="rating">Rating:</string>
     <string name="directors">Directors:</string>

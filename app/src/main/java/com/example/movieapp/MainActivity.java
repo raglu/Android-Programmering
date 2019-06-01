@@ -14,6 +14,8 @@ import android.support.v7.widget.Toolbar;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, TitleFragment.OnTitleSelectedListener {
 
+    private TitleFragment firstFragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +42,7 @@ public class MainActivity extends AppCompatActivity
             }
 
             // Create an instance of ExampleFragment
-            TitleFragment firstFragment = new TitleFragment();
+            firstFragment = new TitleFragment();
 
             // In case this activity was started with special instructions from an Intent,
             // pass the Intent's extras to the fragment as arguments
@@ -68,12 +70,12 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.sortUpcoming) {
-            // Handle the camera action
-        } else if (id == R.id.sortPopular) {
-
-        } else if (id == R.id.sortRating) {
-
+        if (id == R.id.Popular) {
+            firstFragment.getMovies("Popular");
+        } else if (id == R.id.Rating) {
+            firstFragment.getMovies("TopRated");
+        } else if (id == R.id.Upcoming) {
+            firstFragment.getMovies("Upcoming");
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

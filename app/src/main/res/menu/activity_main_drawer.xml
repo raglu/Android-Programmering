@@ -4,13 +4,13 @@
     tools:showIn="navigation_view">
 
     <item
-        android:id="@+id/sortPopular"
+        android:id="@+id/Popular"
         android:title="@string/menu_popularity" />
     <item
-        android:id="@+id/sortRating"
+        android:id="@+id/Rating"
         android:title="@string/menu_rating" />
     <item
-        android:id="@+id/sortUpcoming"
+        android:id="@+id/Upcoming"
         android:title="@string/menu_upcoming" />
 
 </menu>

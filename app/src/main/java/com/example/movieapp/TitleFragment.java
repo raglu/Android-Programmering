@@ -41,9 +41,13 @@ public class TitleFragment extends ListFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        getMovies("Popular");
+    }
+
+    public void getMovies(String type) {
         moviesRepository = MoviesRepository.getInstance();
 
-        moviesRepository.getMovies(new OnGetMoviesCallback() {
+        moviesRepository.getMovies(type, new OnGetMoviesCallback() {
             @Override
             public void onSuccess(List<Movie> movies) {
                 String[] s = new String[100];
