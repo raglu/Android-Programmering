@@ -24,13 +24,11 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 public class TitleFragment extends ListFragment {
-    /*
-
     OnTitleSelectedListener mCallback;
 
     // The container Activity must implement this interface so the frag can deliver messages
     public interface OnTitleSelectedListener {
-         Called by TitleFragment when a list item is selected
+        /** Called by TitleFragment when a list item is selected */
         public void onMovieSelected(int position);
     }
 
@@ -79,5 +77,4 @@ public class TitleFragment extends ListFragment {
         // Set the item as checked to be highlighted when in two-pane layout
         getListView().setItemChecked(position, true);
     }
- */
 }

@@ -10,9 +10,6 @@
     <string name="menu_popularity">Sort by Popularity</string>
     <string name="menu_rating">Sort by Rating</string>
     <string name="menu_upcoming">Sort by Upcoming</string>
-    <string name="popular">Popular</string>
-    <string name="top_rated">Top Rated</string>
-    <string name="upcoming">Upcoming</string>
 
     <string name="rating">Rating:</string>
     <string name="directors">Directors:</string>
