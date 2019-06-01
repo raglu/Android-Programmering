@@ -22,17 +22,22 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
 public class MovieFragment extends Fragment {
+    
+    private static String IMAGE_BASE_URL = "http://image.tmdb.org/t/p/w780";
+
+    private MoviesRepository moviesRepository;
     final static String ARG_POSITION = "position";
     int mCurrentPosition = -1;
     private CoordinatorLayout svMovie;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, 
-        Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
 
         // If activity recreated (such as from screen rotate), restore
         // the previous movie selection set by onSaveInstanceState().
@@ -40,6 +45,8 @@ public class MovieFragment extends Fragment {
         if (savedInstanceState != null) {
             mCurrentPosition = savedInstanceState.getInt(ARG_POSITION);
         }
+
+        moviesRepository = MoviesRepository.getInstance();
 
         // Inflate the layout for this fragment
         svMovie = (CoordinatorLayout) inflater.inflate(R.layout.movie_view, container, false);
@@ -66,11 +73,33 @@ public class MovieFragment extends Fragment {
 
     public void updateMovieView(int position) {
 
-        TextView movieTitle = (TextView) getView().findViewById(R.id.movieDetailsTitle);
-        movieTitle.setText(ViewElements.Titles[position]);
+        moviesRepository.getMovie(position, new OnGetMovieCallback() {
+            @Override
+            public void onSuccess(Movie movie) {
+                TextView movieTitle = (TextView) getView().findViewById(R.id.movieDetailsTitle);
+                ImageView moviePoster = (ImageView) getView().findViewById(R.id.movieDetailsBackdrop);
+                TextView movieOverview = getView().findViewById(R.id.movieDetailsOverview);
+                TextView movieOverviewLabel = getView().findViewById(R.id.summaryLabel);
+                TextView movieReleaseDate = getView().findViewById(R.id.movieDetailsReleaseDate);
+                RatingBar movieRating = getView().findViewById(R.id.movieDetailsRating);
 
-        ImageView moviePoster = (ImageView) getView().findViewById(R.id.movieDetailsBackdrop);
-        GlideApp.with(this).load("https://m.media-amazon.com/images/M/MV5BMTc5MDE2ODcwNV5BMl5BanBnXkFtZTgwMzI2NzQ2NzM@._V1_.jpg").into(moviePoster);
+                movieTitle.setText(movie.getTitle());
+                movieOverviewLabel.setVisibility(View.VISIBLE);
+                movieOverview.setText(movie.getOverview());
+                movieRating.setVisibility(View.VISIBLE);
+                movieRating.setRating(movie.getRating() / 2);
+                movieReleaseDate.setText(movie.getReleaseDate());
+
+                GlideApp.with(MovieFragment.this)
+                        .load(IMAGE_BASE_URL + movie.getBackdrop())
+                        .into(moviePoster);
+
+            }
+
+            @Override
+            public void onError() {
+            }
+        });
 
         mCurrentPosition = position;
     }

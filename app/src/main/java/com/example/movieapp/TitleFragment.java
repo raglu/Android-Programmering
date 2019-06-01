@@ -29,6 +29,7 @@ public class TitleFragment extends ListFragment {
 
     OnTitleSelectedListener mCallback;
     private MoviesRepository moviesRepository;
+    private List<Movie> asdf;
 
     // The container Activity must implement this interface so the frag can deliver messages
     public interface OnTitleSelectedListener {
@@ -50,6 +51,8 @@ public class TitleFragment extends ListFragment {
                 for(int i = 0; i < movies.size(); i++){
                     s[i]= movies.get(i).getTitle();
                 }
+
+                asdf = movies;
 
                 int layout = android.R.layout.simple_list_item_activated_1;
                 setListAdapter(new ArrayAdapter<String>(getActivity(), layout, s));
@@ -89,9 +92,9 @@ public class TitleFragment extends ListFragment {
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         // Notify the parent activity of selected item
-        mCallback.onMovieSelected(position);
+        mCallback.onMovieSelected(asdf.get(position).getId());
         
         // Set the item as checked to be highlighted when in two-pane layout
-        getListView().setItemChecked(position, true);
+        getListView().setItemChecked(asdf.get(position).getId(), true);
     }
 }
