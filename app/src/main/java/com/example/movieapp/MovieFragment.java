@@ -76,8 +76,8 @@ public class MovieFragment extends Fragment {
         moviesRepository.getMovie(position, new OnGetMovieCallback() {
             @Override
             public void onSuccess(Movie movie) {
-                TextView movieTitle = (TextView) getView().findViewById(R.id.movieDetailsTitle);
-                ImageView moviePoster = (ImageView) getView().findViewById(R.id.movieDetailsBackdrop);
+                TextView movieTitle = getView().findViewById(R.id.movieDetailsTitle);
+                ImageView moviePoster = getView().findViewById(R.id.movieDetailsBackdrop);
                 TextView movieOverview = getView().findViewById(R.id.movieDetailsOverview);
                 TextView movieOverviewLabel = getView().findViewById(R.id.summaryLabel);
                 TextView movieReleaseDate = getView().findViewById(R.id.movieDetailsReleaseDate);
