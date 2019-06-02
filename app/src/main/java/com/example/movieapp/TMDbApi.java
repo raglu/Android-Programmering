@@ -7,6 +7,8 @@ import retrofit2.http.Path;
 
 public interface TMDbApi {
 
+    // Interface with TMDB api-endpoints for fetching movies
+
     @GET("movie/popular")
     Call<MoviesResponse> getPopularMovies(
             @Query("api_key") String apiKey,
