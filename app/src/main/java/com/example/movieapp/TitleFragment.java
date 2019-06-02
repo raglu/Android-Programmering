@@ -48,7 +48,7 @@ public class TitleFragment extends ListFragment {
         moviesRepository.getMovies(type, new OnGetMoviesCallback() {
             @Override
             public void onSuccess(List<Movie> movies) {
-                String[] s = new String[100];
+                String[] s = new String[20];
 
                 for(int i = 0; i < movies.size(); i++){
                     s[i]= movies.get(i).getTitle();
